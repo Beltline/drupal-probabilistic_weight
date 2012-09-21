@@ -1,0 +1,113 @@
+<?php
+
+/**
+ * Creación de campo.
+ * label -> muestra el texto que aparecerá en el desplegable de tipos de campo.
+ * description -> ???
+ * default_widget ->
+ * default_formatter-> 
+ * 
+ * FIELD dentro de MANAGE FIELDS
+ * 
+ */
+function probabilistic_weight_field_info(){
+
+    return array(
+        'probabilistic_weight' => array(
+            'label' => t('Probabilistic weight'),
+            'description' => t('Probabilistic weight Info2'),
+            'settings' => array(
+                'max_length' => 128
+            ),
+            'instance_settings' => array(
+                'text_processing' => 0
+            ),
+            'default_widget' => 'probabilistic_weight_filter', /* Text */
+            'default_formatter' => 'probabilistic_weight_filter_formatter' /* Hello */
+        )
+    );
+
+}
+
+function probabilistic_weight_field_is_empty($item, $field) {
+
+    return empty($item['weight']);
+
+}
+
+// MANAGE DISPLAY -> Columna FORMAT
+function probabilistic_weight_field_formatter_info(){
+
+    return array(
+        'probabilistic_weight_filter_formatter' => array(
+            'label' => t('Text'),
+            'field types' => array('probabilistic_weight')
+        )
+    );
+
+}
+
+function probabilistic_weight_field_widget_info(){
+
+    return array(
+        'probabilistic_weight_filter' => array(
+            'label' => t('Text'),
+            'field types' => array('probabilistic_weight')
+        )
+    );
+
+}
+
+// Formulario de creacion/edicion del nodo
+function probabilistic_weight_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta = 0){
+
+	// Si en la creacion del tipo de campo se marca como obligatorio
+	// mirar tb el valor por defecto y asignarle...
+	// haremos abajo que sea obligatorio
+	// mirar kpr $field, $instance.
+	
+    $element['weight'] = array(
+		'#title' => 'Peso ' . $delta,
+        '#type' => 'textfield',
+        '#default_value' => isset($items[$delta]['weight']) ? $items[$delta]['weight'] : 0
+    );
+
+    return $element;
+
+}
+
+// Como se ve en la vista del nodo
+function probabilistic_weight_field_formatter_view($object_type, $object, $field, $instance, $langcode, $items, $display){
+
+    if($display['type'] == 'probabilistic_weight_filter_formatter'){
+        $ret = array();
+        if(($items) && (count($items) > 0)){
+            foreach($items as $item){
+                $ret[]= $item['weight'];
+            }
+        }
+        return $ret;
+    }
+
+}
+
+// [ahora] para q vale
+function probabilistic_weight_field_widget_error($element, $error){
+
+    // TO-DO
+    form_error($element['value'], $error['message']);
+    //drupal_set_message('Debe seleccionar un widget para este tipo de campo.');
+
+}
+
+// [ahora] Validar campo float drupal.org o módulo field del core.
+
+
+function probabilistic_weight_views_api(){
+
+    return array(
+        'api' => 2.0,
+        'path' => drupal_get_path('module', 'probabilistic_weight') . '/views'
+    );
+
+}

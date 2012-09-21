@@ -1,0 +1,11 @@
+; $Id: paths.info,v 1.0 2012/03/14 11:46:00 hiberus Exp $
+name = Probabilistic weight
+description = Probabilistic weight
+package = Fields
+core = 7.x
+version = 7.x-1.0
+dependencies[] = field
+dependencies[] = views
+
+files[] = views/probabilistic_weight_handler_sort_weight.inc
+files[] = views/probabilistic_weight.views.inc

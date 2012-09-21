@@ -1,0 +1,98 @@
+<?php
+
+/*function probabilistic_weight_views_data(){
+
+    return array();
+
+}*/
+
+function probabilistic_weight_views_data_alter(&$data){
+
+  //$data['probabilistic_weight']['table']['group'] = t('Global');
+  //$data['probabilistic_weight']['table']['join'] = array(
+    // #global is a special flag which let's a table appear all the time.
+    //'#global' => array(),
+  //);
+
+    /*$data['field_data_field_peso_prob']['table'] = array(
+        'group' => t('Probabilistic weight'),
+        'join' => array(
+            'node' => array(
+                'left_field' => 'nid',
+                'field' => 'entity_id',
+            )
+        )
+    );*/
+
+    $fields = field_info_fields();
+
+    foreach($fields as $key => $field){
+        if($field['module'] == 'probabilistic_weight'){
+            $group = 'field_data_' . $field['field_name'];
+            $data[$group] = array(
+                'table' => array(
+                    'join' => array(
+                        'node' => array(
+                            'left_field' => 'nid',
+                            'field' => 'entity_id',
+                            'extra' => array(
+                                0 => array(
+                                    'field' => 'entity_type',
+                                    'value' => 'node'
+                                ),
+                                1 => array(
+                                    'field' => 'deleted',
+                                    'value' => 0,
+                                    'numeric' => TRUE
+                                )
+                            )
+                        )
+                    )
+                ),
+                'entity_id' => array(
+                    'field' => array(
+                        'moved to' => array(
+                            0 => $group,
+                            1 => $field['field_name']
+                        )
+                    )
+                )
+            );
+            $data[$group][$field['field_name'] . '_weight'] = array(
+                'group' => t('Probabilistic weight'),
+                'title' => $field['field_name'],
+                'help' => t('Probabilistic weight fields') . ': ' . $field['field_name'],
+                'field' => array(
+                    'handler' => 'views_handler_field_numeric',
+                    'click sortable' => TRUE
+                ),
+                'filter' => array(
+                    'handler' => 'views_handler_filter_numeric'
+                ),
+                'sort' => array(
+                    'handler' => 'probabilistic_weight_handler_sort_weight'
+                ),
+                'argument' => array(
+                    'handler' => 'views_handler_argument_numeric'
+                )
+            );
+        }
+    }
+
+}
+
+function probabilistic_weight_views_handlers(){
+
+    return array(
+        'info' => array(
+            'path' => drupal_get_path('module', 'probabilistic_weight') . '/views'
+        ),
+        'handlers' => array(
+            'probabilistic_weight_handler_sort_weight' => array(
+                'parent' => 'views_handler_sort',
+                //'file' => 'probabilistic_weight_handler_sort_weight.inc'
+            )
+        )
+    );
+
+}
