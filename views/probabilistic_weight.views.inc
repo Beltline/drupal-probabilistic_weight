@@ -1,28 +1,6 @@
 <?php
 
-/*function probabilistic_weight_views_data(){
-
-    return array();
-
-}*/
-
 function probabilistic_weight_views_data_alter(&$data){
-
-  //$data['probabilistic_weight']['table']['group'] = t('Global');
-  //$data['probabilistic_weight']['table']['join'] = array(
-    // #global is a special flag which let's a table appear all the time.
-    //'#global' => array(),
-  //);
-
-    /*$data['field_data_field_peso_prob']['table'] = array(
-        'group' => t('Probabilistic weight'),
-        'join' => array(
-            'node' => array(
-                'left_field' => 'nid',
-                'field' => 'entity_id',
-            )
-        )
-    );*/
 
     $fields = field_info_fields();
 
@@ -89,8 +67,7 @@ function probabilistic_weight_views_handlers(){
         ),
         'handlers' => array(
             'probabilistic_weight_handler_sort_weight' => array(
-                'parent' => 'views_handler_sort',
-                //'file' => 'probabilistic_weight_handler_sort_weight.inc'
+                'parent' => 'views_handler_sort'
             )
         )
     );

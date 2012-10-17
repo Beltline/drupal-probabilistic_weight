@@ -17,17 +17,24 @@ class probabilistic_weight_handler_sort_weight extends views_handler_sort{
             $this->query->add_orderby(
                 NULL,
                 'RAND() * ' . $current_field,
-                'DESC',
+                $this->options['order'],
                 $current_field . '_sort'
             );
         }
 
     }
 
-    function options_form(&$form, &$form_state){
+    function option_definition(){
 
-        parent::options_form($form, $form_state);
-        $form['order']['#access'] = FALSE;
+        $options = parent::option_definition();
+        $options['order'] = array('default' => 'DESC');
+        $options['exposed'] = array('default' => FALSE, 'bool' => TRUE);
+        $options['expose'] = array(
+            'contains' => array(
+            'label' => array('default' => '', 'translatable' => TRUE),
+        ),
+        );
+        return $options;
 
     }
 
