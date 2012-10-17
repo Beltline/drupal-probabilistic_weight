@@ -59,7 +59,7 @@ function probabilistic_weight_field_widget_form(&$form, &$form_state, $field, $i
 		'#title' => $title,
         '#type' => 'textfield',
         '#default_value' => isset($items[$delta]['weight']) ? $items[$delta]['weight'] : 0,
-        '#attributes' => array('classes' => array('prob_weight_field')),
+        '#attributes' => array('class' => array('prob_weight_field')),
         '#required' => $instance['required'],
         '#element_validate' => array('probabilistic_weight_validation')
     );
