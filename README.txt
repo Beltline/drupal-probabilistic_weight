@@ -57,4 +57,3 @@ CREDITS
 -------
 
 7.x-1.x Developed and maintained by grisendo
-
