@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * @file
+ * Views handler to sort taking into account probabilistic weight.
+ */
+
+/**
+ * Sort handler for probabilistic weight.
+ *
+ * @ingroup views_sort_handlers
+ */
 class probabilistic_weight_handler_sort_weight extends views_handler_sort {
 
   function query() {

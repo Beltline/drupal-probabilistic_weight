@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * @file
+ * Provide views data and handlers for probabilistic_weight.module.
+ *
+ * @ingroup views_module_handlers
+ */
+
+/**
+ * Implements hook_views_data_alter().
+ */
 function probabilistic_weight_views_data_alter(&$data) {
 
   $fields = field_info_fields();
@@ -60,6 +70,9 @@ function probabilistic_weight_views_data_alter(&$data) {
 
 }
 
+/**
+ * Implements hook_views_handlers().
+ */
 function probabilistic_weight_views_handlers() {
 
   return array(

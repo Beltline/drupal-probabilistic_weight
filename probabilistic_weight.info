@@ -1,5 +1,5 @@
 name = Probabilistic weight
-description = Probabilistic weight
+description = Allows to create probabilistic weighted fields
 package = Fields
 core = 7.x
 

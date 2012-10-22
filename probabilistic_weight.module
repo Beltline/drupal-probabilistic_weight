@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @file
+ * Allows to create probabilistic weighted fields.
+ */
+
+/**
+ * Implements hook_field_info().
+ */
 function probabilistic_weight_field_info() {
 
   return array(
@@ -19,12 +27,18 @@ function probabilistic_weight_field_info() {
 
 }
 
+/**
+ * Implements hook_field_is_empty().
+ */
 function probabilistic_weight_field_is_empty($item, $field) {
 
   return empty($item['weight']);
 
 }
 
+/**
+ * Implements hook_field_formatter_info().
+ */
 function probabilistic_weight_field_formatter_info() {
 
   return array(
@@ -36,6 +50,9 @@ function probabilistic_weight_field_formatter_info() {
 
 }
 
+/**
+ * Implements hook_field_widget_info().
+ */
 function probabilistic_weight_field_widget_info() {
 
   return array(
@@ -47,6 +64,9 @@ function probabilistic_weight_field_widget_info() {
 
 }
 
+/**
+ * Implements hook_field_widget_form().
+ */
 function probabilistic_weight_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta = 0) {
 
   if ($field['cardinality'] == 1) {
@@ -69,6 +89,14 @@ function probabilistic_weight_field_widget_form(&$form, &$form_state, $field, $i
 
 }
 
+/**
+ * Validation for field 'weight' in probabilistic_weight_field_widget_form
+ *
+ * @param $element
+ *   Field definition for 'weight'
+ * @param $form_state
+ *   Full form values
+ */
 function probabilistic_weight_validation($element, &$form_state) {
 
   $value = $form_state['input'][$element['#parents'][0]][$element['#parents'][1]][$element['#parents'][2]][$element['#parents'][3]];
@@ -109,6 +137,9 @@ function probabilistic_weight_validation($element, &$form_state) {
 
 }
 
+/**
+ * Implements hook_field_formatter_view().
+ */
 function probabilistic_weight_field_formatter_view($object_type, $object, $field, $instance, $langcode, $items, $display) {
 
   if ($display['type'] == 'probabilistic_weight_filter_formatter') {
@@ -123,6 +154,9 @@ function probabilistic_weight_field_formatter_view($object_type, $object, $field
 
 }
 
+/**
+ * Implements hook_views_api().
+ */
 function probabilistic_weight_views_api() {
 
   return array(

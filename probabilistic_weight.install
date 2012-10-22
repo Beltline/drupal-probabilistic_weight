@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @file
+ * Handles Probabilistic Weight module installation and upgrade tasks.
+ */
+
+/**
+ * Implements hook_field_schema().
+ */
 function probabilistic_weight_field_schema($field) {
 
   $schema = array(
