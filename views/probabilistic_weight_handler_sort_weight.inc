@@ -18,7 +18,7 @@ class probabilistic_weight_handler_sort_weight extends views_handler_sort {
     $found_alias = NULL;
 
     foreach ($this->query->fields as $field) {
-      if($field['field'] == $current_field) {
+      if ($field['field'] == $current_field) {
         $found_alias = $field['alias'];
       }
     }

@@ -77,7 +77,7 @@ function probabilistic_weight_field_widget_form(&$form, &$form_state, $field, $i
   }
 
   $element['weight'] = array(
-    '#title' => $title,
+    '#title' => check_plain($title),
     '#type' => 'textfield',
     '#default_value' => isset($items[$delta]['weight']) ? $items[$delta]['weight'] : 0,
     '#attributes' => array('class' => array('prob_weight_field')),
@@ -90,12 +90,12 @@ function probabilistic_weight_field_widget_form(&$form, &$form_state, $field, $i
 }
 
 /**
- * Validation for field 'weight' in probabilistic_weight_field_widget_form
+ * Validation for field 'weight' in probabilistic_weight_field_widget_form.
  *
- * @param $element
- *   Field definition for 'weight'
- * @param $form_state
- *   Full form values
+ * @param array $element
+ *   Field definition for 'weight'.
+ * @param array $form_state
+ *   Full form values.
  */
 function probabilistic_weight_validation($element, &$form_state) {
 
