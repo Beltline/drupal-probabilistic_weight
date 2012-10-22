@@ -49,9 +49,9 @@ function probabilistic_weight_field_widget_info() {
 
 function probabilistic_weight_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta = 0) {
 
-  if($field['cardinality'] == 1){
+  if($field['cardinality'] == 1) {
     $title = $instance['label'];
-  }else{
+  } else {
     $title = $instance['label'] . ' (' . $delta . ')';
   }
 
@@ -70,14 +70,9 @@ function probabilistic_weight_field_widget_form(&$form, &$form_state, $field, $i
 
 function probabilistic_weight_validation($element, &$form_state) {
 
-  $value = $form_state['input']
-    [$element['#parents'][0]]
-    [$element['#parents'][1]]
-    [$element['#parents'][2]]
-    [$element['#parents'][3]]
-  ;
+  $value = $form_state['input'][$element['#parents'][0]][$element['#parents'][1]][$element['#parents'][2]][$element['#parents'][3]];
 
-  if(!is_numeric($value)){
+  if(!is_numeric($value)) {
     form_set_error(
       $element['#parents'][0],
       t(
@@ -87,7 +82,7 @@ function probabilistic_weight_validation($element, &$form_state) {
         )
       )
     );
-  }else if($value < 0){
+  } else if($value < 0) {
     form_set_error(
       $element['#parents'][0],
       t(
@@ -97,7 +92,7 @@ function probabilistic_weight_validation($element, &$form_state) {
         )
       )
     );
-  }else if($value > 1){
+  } else if($value > 1) {
     form_set_error(
       $element['#parents'][0],
       t(
@@ -113,10 +108,10 @@ function probabilistic_weight_validation($element, &$form_state) {
 
 function probabilistic_weight_field_formatter_view($object_type, $object, $field, $instance, $langcode, $items, $display) {
 
-  if($display['type'] == 'probabilistic_weight_filter_formatter'){
+  if($display['type'] == 'probabilistic_weight_filter_formatter') {
     $ret = array();
-    if(($items) && (count($items) > 0)){
-      foreach($items as $item){
+    if(($items) && (count($items) > 0)) {
+      foreach($items as $item) {
         $ret[]= $item['weight'];
       }
     }
