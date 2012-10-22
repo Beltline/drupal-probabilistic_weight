@@ -8,4 +8,3 @@ dependencies[] = field
 dependencies[] = views
 
 files[] = views/probabilistic_weight_handler_sort_weight.inc
-files[] = views/probabilistic_weight.views.inc
