@@ -12,7 +12,10 @@
  */
 class probabilistic_weight_handler_sort_weight extends views_handler_sort {
 
-  function query() {
+  /**
+   * @see views_handler_sort::query()
+   */
+  public function query() {
 
     $current_field = $this->field;
     $found_alias = NULL;
@@ -34,7 +37,10 @@ class probabilistic_weight_handler_sort_weight extends views_handler_sort {
 
   }
 
-  function option_definition() {
+  /**
+   * @see views_handler_sort::option_definition()
+   */
+  public function option_definition() {
 
     $options = parent::option_definition();
     $options['order'] = array('default' => 'DESC');
