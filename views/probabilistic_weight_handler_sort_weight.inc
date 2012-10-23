@@ -38,8 +38,7 @@ class probabilistic_weight_handler_sort_weight extends views_handler_sort {
   }
 
   /**
-   * Information about options for all kinds of purposes
-   * will be held here.
+   * Information about options are defined here.
    */
   public function option_definition() {
 
