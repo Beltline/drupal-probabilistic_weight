@@ -13,7 +13,7 @@
 class probabilistic_weight_handler_sort_weight extends views_handler_sort {
 
   /**
-   * @see views_handler_sort::query()
+   * Called to add the sort to a query.
    */
   public function query() {
 
@@ -38,7 +38,8 @@ class probabilistic_weight_handler_sort_weight extends views_handler_sort {
   }
 
   /**
-   * @see views_handler_sort::option_definition()
+   * Information about options for all kinds of purposes
+   * will be held here.
    */
   public function option_definition() {
 
