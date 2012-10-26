@@ -49,7 +49,7 @@ function probabilistic_weight_views_data_alter(&$data) {
       $data[$group][$field['field_name'] . '_weight'] = array(
         'group' => t('Probabilistic weight'),
         'title' => $field['field_name'],
-        'help' => t('Probabilistic weight fields') . ': ' . $field['field_name'],
+        'help' => t('Probabilistic weight fields: !field_name', array('!field_name' => $field['field_name'])),
         'field' => array(
           'handler' => 'views_handler_field_numeric',
           'click sortable' => TRUE,

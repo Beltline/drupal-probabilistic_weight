@@ -99,7 +99,7 @@ function probabilistic_weight_field_widget_form(&$form, &$form_state, $field, $i
  */
 function probabilistic_weight_validation($element, &$form_state) {
 
-  $value = $form_state['input'][$element['#parents'][0]][$element['#parents'][1]][$element['#parents'][2]][$element['#parents'][3]];
+  $value = $element['#value'];
 
   if (!is_numeric($value)) {
     form_set_error(
@@ -160,7 +160,7 @@ function probabilistic_weight_field_formatter_view($object_type, $object, $field
 function probabilistic_weight_views_api() {
 
   return array(
-    'api' => 2.0,
+    'api' => 3.0,
     'path' => drupal_get_path('module', 'probabilistic_weight') . '/views',
   );
 
