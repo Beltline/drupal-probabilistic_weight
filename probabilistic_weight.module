@@ -160,7 +160,7 @@ function probabilistic_weight_field_formatter_view($object_type, $object, $field
 function probabilistic_weight_views_api() {
 
   return array(
-    'api' => 3.0,
+    'api' => 3,
     'path' => drupal_get_path('module', 'probabilistic_weight') . '/views',
   );
 
