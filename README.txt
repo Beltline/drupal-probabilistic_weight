@@ -30,7 +30,8 @@ to be promoted, but not always, in order to avoid being annoying.
 Many fields can be assigned to any entity type, so you can have not
 only a unique probability weight per content, but many as desired.
 
-Other similar project is Random Weight (http://drupal.org/project/random_weight),
+Other similar project is Random Weight
+(http://drupal.org/project/random_weight),
 but there are many differences because the scope is totally different:
   * The most important difference: there is no randomness
     control with Random Weight. Weights are assigned randomly.
@@ -44,9 +45,10 @@ but there are many differences because the scope is totally different:
     per entity (more than one field per entity).
 
 This module intends to generate queries with different query results each
-time. If you are using core page caching or Boost (http://drupal.org/project/boost),
-you can use Ajax Blocks (http://drupal.org/project/ajaxblocks) to avoid
-having always the same HTML result for anonymous users.
+time. If you are using core page caching or Boost
+(http://drupal.org/project/boost),
+you can use also Ajax Blocks (http://drupal.org/project/ajaxblocks) to
+avoid having always the same HTML result for anonymous users.
 
 
 REQUIREMENTS

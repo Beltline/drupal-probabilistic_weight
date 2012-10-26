@@ -29,21 +29,26 @@ class probabilistic_weight_handler_sort_weight extends views_handler_sort {
     if ($found_alias) {
       $driver = db_driver();
       switch ($driver) {
+
         case 'pgsql':
           $sub = 'RANDOM() * ' . $current_field;
           break;
+
         case 'mysql':
         case 'mysqli':
         case 'sqlite':
         default:
           $sub = 'RAND() * ' . $current_field;
+
       }
+
       $this->query->add_orderby(
         NULL,
         $sub,
         $this->options['order'],
         $current_field . '_sort'
       );
+
     }
 
   }
