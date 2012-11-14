@@ -82,6 +82,7 @@ function probabilistic_weight_field_widget_form(&$form, &$form_state, $field, $i
     '#default_value' => isset($items[$delta]['weight']) ? $items[$delta]['weight'] : 0,
     '#attributes' => array('class' => array('prob_weight_field')),
     '#required' => $instance['required'],
+    '#description' => $instance['description'] ? $instance['description'] : t('Must be a decimal value between 0 and 1, included.'),
     '#element_validate' => array('probabilistic_weight_validation'),
   );
 
