@@ -76,13 +76,15 @@ function probabilistic_weight_field_widget_form(&$form, &$form_state, $field, $i
     $title = $instance['label'] . ' (' . $delta . ')';
   }
 
+  $desc = filter_xss_admin($instance['description']);
+
   $element['weight'] = array(
     '#title' => check_plain($title),
     '#type' => 'textfield',
     '#default_value' => isset($items[$delta]['weight']) ? $items[$delta]['weight'] : 0,
     '#attributes' => array('class' => array('prob_weight_field')),
     '#required' => $instance['required'],
-    '#description' => $instance['description'] ? $instance['description'] : t('It must be a decimal value greather or equal than 0 and lower or equal than 1.'),
+    '#description' => $desc ? $desc : t('It must be a decimal value greather or equal than 0 and lower or equal than 1.'),
     '#element_validate' => array('probabilistic_weight_validation'),
   );
 
