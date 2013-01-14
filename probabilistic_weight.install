@@ -55,7 +55,7 @@ function probabilistic_weight_update_7001() {
       db_update('field_config_instance')
         ->fields(
           array(
-            'data' => serialize($data)
+            'data' => serialize($data),
           )
         )
         ->condition('field_id', $row['id'])
