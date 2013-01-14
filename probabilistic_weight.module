@@ -184,7 +184,7 @@ function probabilistic_weight_field_formatter_view($object_type, $object, $field
     if (($items) && (count($items) > 0)) {
       foreach ($items as $item) {
         $ret[] = array(
-          '#markup' => $item['weight']
+          '#markup' => $item['weight'],
         );
       }
     }

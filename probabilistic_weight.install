@@ -35,15 +35,13 @@ function probabilistic_weight_update_7001() {
   $sql = db_select('field_config', 'fc')
     ->fields('fc', array('id'))
     ->condition('type', 'probabilistic_weight')
-    ->execute()
-  ;
+    ->execute();
 
   while ($row = $sql->fetchAssoc()) {
     $sql2 = db_select('field_config_instance', 'fci')
       ->fields('fci', array('data'))
       ->condition('field_id', $row['id'])
-      ->execute()
-    ;
+      ->execute();
     if ($row2 = $sql2->fetchAssoc()) {
       $data = unserialize($row2['data']);
       if ($data['widget']['type'] == 'probabilistic_weight_filter') {
@@ -61,8 +59,7 @@ function probabilistic_weight_update_7001() {
           )
         )
         ->condition('field_id', $row['id'])
-        ->execute()
-      ;
+        ->execute();
     }
 
   }
