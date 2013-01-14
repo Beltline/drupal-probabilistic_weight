@@ -17,11 +17,9 @@ function probabilistic_weight_field_info() {
       'settings' => array(
         'max_length' => 128,
       ),
-      'instance_settings' => array(
-        'text_processing' => 0,
-      ),
-      'default_widget' => 'probabilistic_weight_filter',
-      'default_formatter' => 'probabilistic_weight_filter_formatter',
+      'default_widget' => 'probabilistic_weight_widget_text',
+      'default_formatter' => 'probabilistic_weight_formatter_text',
+      'property_type' => 'decimal',
     ),
   );
 
@@ -42,7 +40,7 @@ function probabilistic_weight_field_is_empty($item, $field) {
 function probabilistic_weight_field_formatter_info() {
 
   return array(
-    'probabilistic_weight_filter_formatter' => array(
+    'probabilistic_weight_formatter_text' => array(
       'label' => t('Text'),
       'field types' => array('probabilistic_weight'),
     ),
@@ -56,8 +54,12 @@ function probabilistic_weight_field_formatter_info() {
 function probabilistic_weight_field_widget_info() {
 
   return array(
-    'probabilistic_weight_filter' => array(
+    'probabilistic_weight_widget_text' => array(
       'label' => t('Text'),
+      'field types' => array('probabilistic_weight'),
+    ),
+    'probabilistic_weight_widget_slider' => array(
+      'label' => t('Slider'),
       'field types' => array('probabilistic_weight'),
     ),
   );
@@ -69,6 +71,25 @@ function probabilistic_weight_field_widget_info() {
  */
 function probabilistic_weight_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta = 0) {
 
+  $pb_weight_slider = &drupal_static(__FUNCTION__, FALSE);
+
+  if (!$pb_weight_slider) {
+    $pb_weight_slider = TRUE;
+    drupal_add_library('system', 'ui.slider');
+    drupal_add_js(
+      drupal_get_path('module', 'probabilistic_weight') . '/js/probabilistic_weight_slider.js'
+    );
+    drupal_add_js(
+      array(
+        'probabilistic_weight' => array(
+          'empty_text' => t('Disable'),
+          'disabled_text' => t('Disabled'),
+        ),
+      ),
+      'setting'
+    );
+  }
+
   if ($field['cardinality'] == 1) {
     $title = $instance['label'];
   }
@@ -78,11 +99,20 @@ function probabilistic_weight_field_widget_form(&$form, &$form_state, $field, $i
 
   $desc = filter_xss_admin($instance['description']);
 
+  $classes = array('prob_weight_field');
+
+  if ($instance['widget']['type'] == 'probabilistic_weight_widget_slider') {
+    $classes[] = 'prob_weight_slider';
+  }
+  if ($instance['required']) {
+    $classes[] = 'prob_weight_required';
+  }
+
   $element['weight'] = array(
     '#title' => check_plain($title),
     '#type' => 'textfield',
-    '#default_value' => isset($items[$delta]['weight']) ? $items[$delta]['weight'] : 0,
-    '#attributes' => array('class' => array('prob_weight_field')),
+    '#default_value' => isset($items[$delta]['weight']) ? $items[$delta]['weight'] : '',
+    '#attributes' => array('class' => $classes),
     '#required' => $instance['required'],
     '#description' => $desc ? $desc : t('It must be a decimal value greather or equal than 0 and lower or equal than 1.'),
     '#element_validate' => array('probabilistic_weight_validation'),
@@ -101,6 +131,10 @@ function probabilistic_weight_field_widget_form(&$form, &$form_state, $field, $i
  *   Full form values.
  */
 function probabilistic_weight_validation($element, &$form_state) {
+
+  if (!$element['#required']) {
+    return;
+  }
 
   $value = $element['#value'];
 
@@ -145,11 +179,13 @@ function probabilistic_weight_validation($element, &$form_state) {
  */
 function probabilistic_weight_field_formatter_view($object_type, $object, $field, $instance, $langcode, $items, $display) {
 
-  if ($display['type'] == 'probabilistic_weight_filter_formatter') {
+  if ($display['type'] == 'probabilistic_weight_formatter_text') {
     $ret = array();
     if (($items) && (count($items) > 0)) {
       foreach ($items as $item) {
-        $ret[] = $item['weight'];
+        $ret[] = array(
+          '#markup' => $item['weight']
+        );
       }
     }
     return $ret;

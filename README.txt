@@ -57,6 +57,7 @@ REQUIREMENTS
 Drupal installed on MySQL, SQLite or PostgreSQL database.
 Views 3.x
 
+
 INSTALLATION
 ------------
 
