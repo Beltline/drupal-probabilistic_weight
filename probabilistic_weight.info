@@ -1,9 +1,0 @@
-name = Probabilistic weight
-description = Allows to create probabilistic weighted fields
-package = Fields
-core = 7.x
-
-dependencies[] = field
-dependencies[] = views
-
-files[] = views/probabilistic_weight_handler_sort_weight.inc

@@ -12,9 +12,10 @@
  */
 function probabilistic_weight_views_data_alter(&$data) {
 
-  $fields = field_info_fields();
+  kpr($data);
+  die;
 
-  //dsm($fields);
+  $fields = field_info_fields();
 
   foreach ($fields as $key => $field) {
     if ($field['module'] == 'probabilistic_weight') {
