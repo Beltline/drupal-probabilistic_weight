@@ -14,6 +14,8 @@ function probabilistic_weight_views_data_alter(&$data) {
 
   $fields = field_info_fields();
 
+  //dsm($fields);
+
   foreach ($fields as $key => $field) {
     if ($field['module'] == 'probabilistic_weight') {
       $group = 'field_data_' . $field['field_name'];
