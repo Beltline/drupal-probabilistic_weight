@@ -34,11 +34,7 @@ function probabilistic_weight_field_is_empty($item, $field_type) {
 
 }
 
-/*function probabilistic_weight_validation($element, &$form_state) {
-
-  if (!$element['#required']) {
-    return;
-  }
+function probabilistic_weight_validation($element, &$form_state) {
 
   $value = $element['#value'];
 
@@ -76,7 +72,7 @@ function probabilistic_weight_field_is_empty($item, $field_type) {
     );
   }
 
-}*/
+}
 
 /**
  * Implements hook_views_api().

@@ -11,8 +11,7 @@ use Drupal\views\Plugin\views\sort\SortPluginBase;
 use Drupal\Component\Annotation\PluginID;
 
 /**
- * Sort handler to sort by last comment name which might be in 2 different
- * fields.
+ * Sort handler to sort by random probabilistic weight.
  *
  * @ingroup views_sort_handlers
  *
@@ -26,7 +25,7 @@ class Random extends SortPluginBase {
 
     $counter = &drupal_static('probabilistic_weight_handler_sort_weight_counter', 0);
 
-    $current_table = $this->query->ensureTable($this->realTable, $this->relationship);
+    $current_table = $this->query->ensureTable($this->actualTable, $this->relationship);
     $current_field = $this->query->addField($current_table, $this->realField);
 
     $driver = db_driver();
@@ -48,7 +47,7 @@ class Random extends SortPluginBase {
       NULL,
       $sub,
       $this->options['order'],
-      $current_field . '_weight' . $counter
+      $current_field . '_weight_' . $counter
     );
 
     $counter++;

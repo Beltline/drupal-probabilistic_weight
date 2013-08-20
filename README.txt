@@ -1,5 +1,5 @@
 
-PROBABILISTIC WEIGHT MODULE FOR DRUPAL 7.x
+PROBABILISTIC WEIGHT MODULE FOR DRUPAL 8.x
 ------------------------------------------
 
 CONTENTS OF THIS README
@@ -54,8 +54,7 @@ avoid having always the same HTML result for anonymous users.
 REQUIREMENTS
 ------------
 
-Drupal installed on MySQL, SQLite or PostgreSQL database.
-Views 3.x
+Drupal 8.x installed on MySQL, SQLite or PostgreSQL database.
 
 
 INSTALLATION
@@ -77,4 +76,4 @@ Donation is possible by contacting me via grisendo@gmail.com
 CREDITS
 -------
 
-7.x-1.x Developed and maintained by grisendo
+8.x-1.x-dev Developed and maintained by grisendo

@@ -1,12 +1,13 @@
 (function($){
 
-Drupal.behaviors.ProbabilisticWeightSlider = {
-  attach: function(context) {
-    $('.prob_weight_slider').each(
+Drupal.behaviors.probabilisticWeightSlider = {
+  attach: function(context, settings) {
+    $('.prob_weight_slider:not(.processed)', context).each(
       function(){
         var $this = $(this);
+        $this.addClass('processed');
         var $field = $this;
-        var $id = $this.attr('id');
+        var $id = $this.prop('id');
         var $description = $this.parent().find('.description');
         var $description_text = $description.text();
         $this.attr('data-description', $description.text());
@@ -54,7 +55,7 @@ Drupal.behaviors.ProbabilisticWeightSlider = {
           $checkbox_wrapper.append($label);
           $this.parent().append($checkbox_wrapper);
           function updateSliderFromCheckbox($item) {
-            if ($item.attr('checked')) {
+            if ($item.prop('checked')) {
               $slider.slider('disable');
               $description.text($description_text + ': ' + Drupal.settings.probabilistic_weight.disabled_text);
               $field.val('');

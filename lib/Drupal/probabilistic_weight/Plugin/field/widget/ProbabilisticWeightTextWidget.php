@@ -32,11 +32,9 @@ class ProbabilisticWeightTextWidget extends WidgetBase {
     $element['weight'] = $element + array(
       '#type' => 'textfield',
       '#default_value' => isset($items[$delta]['weight']) ? $items[$delta]['weight'] : NULL,
-      '#placeholder' => $this->getSetting('placeholder'),
+      '#element_validate' => array('probabilistic_weight_validation'),
     );
     return $element;
   }
-
-  // TO-DO: Validar weight!!!
 
 }
