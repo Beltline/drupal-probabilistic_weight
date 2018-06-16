@@ -1,0 +1,6 @@
+{
+    "name": "drupal/probabilistic_weight",
+    "description": "Probabilistic weight module for Drupal",
+    "type": "drupal-module",
+    "license": "GPL-2.0+"
+}
